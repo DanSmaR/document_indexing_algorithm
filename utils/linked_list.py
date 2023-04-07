@@ -18,7 +18,10 @@ class LinkedList(Generic[T]):
             self.prev = prev
 
         def __str__(self):
-            return f"Node(value={self.value}, next={self.next})"
+            return (
+                f"Node(value={self.value}",
+                f" prev={self.prev}, next={self.next})"
+            )
 
     def __init__(self) -> None:
         self.head = None
