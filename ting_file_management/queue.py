@@ -27,5 +27,5 @@ class Queue(AbstractQueue, Generic[T]):
             raise RuntimeError("Queue is already empty")
         return self.__list.remove_first()
 
-    def search(self, index: int) -> T:
+    def search(self, index: int):
         return self.__list.get_element_at(index)
