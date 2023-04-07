@@ -51,5 +51,11 @@ def remove(queue: Queue[FileInfo]):
     print(f"Arquivo {file_removed['nome_do_arquivo']} removido com sucesso")
 
 
-def file_metadata(queue: Queue[FileInfo], position):
-    """Aqui irá sua implementação"""
+def file_metadata(queue: Queue[FileInfo], position: int):
+    try:
+        file_info = queue.search(position)
+        if not file_info:
+            return None
+        print(file_info, file=sys.stdout)
+    except IndexError:
+        print("Posição inválida", file=sys.stderr)
