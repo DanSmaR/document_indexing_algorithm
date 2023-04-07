@@ -12,7 +12,7 @@ class FileInfo(TypedDict):
     linhas_do_arquivo: List[str]
 
 
-def process(path_file: str, queue: Queue[FileInfo]):
+def process(path_file: str, queue: Queue[FileInfo]) -> None:
     text_list = txt_importer(path_file)
     if not text_list:
         raise RuntimeError("There is no file to process")
@@ -31,7 +31,7 @@ def process(path_file: str, queue: Queue[FileInfo]):
 def check_node_in_queue(
         path_file: str,
         queue: Queue[FileInfo],
-):
+) -> bool:
     is_in_queue = False
     for index in range(len(queue)):
         queue_node = queue.search(index)
@@ -43,9 +43,13 @@ def check_node_in_queue(
     return is_in_queue
 
 
-def remove(instance):
-    """Aqui irá sua implementação"""
+def remove(queue: Queue[FileInfo]):
+    if queue.is_empty():
+        print("Não há elementos", file=sys.stdout)
+        return None
+    file_removed = queue.dequeue()
+    print(f"Arquivo {file_removed['nome_do_arquivo']} removido com sucesso")
 
 
-def file_metadata(instance, position):
+def file_metadata(queue: Queue[FileInfo], position):
     """Aqui irá sua implementação"""
