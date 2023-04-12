@@ -82,14 +82,14 @@ class LinkedList(Generic[T]):
         return node_value
 
     def get_element_at(self, index: int) -> Optional[T]:
+        if self.is_empty():
+            return None
         if index < 0 or index >= self.__length:
             raise IndexError("Índice Inválido ou Inexistente")
-        value_returned = None
         node_to_get_the_value = self.head
-        if node_to_get_the_value:
-            while index > 0 and node_to_get_the_value.next:
-                node_to_get_the_value = node_to_get_the_value.next
-                index -= 1
-            if node_to_get_the_value:
-                value_returned = node_to_get_the_value.value
-        return value_returned
+        if not node_to_get_the_value:
+            return None
+        while index > 0 and node_to_get_the_value.next:
+            node_to_get_the_value = node_to_get_the_value.next
+            index -= 1
+        return node_to_get_the_value.value

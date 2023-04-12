@@ -24,8 +24,9 @@ class Queue(AbstractQueue, Generic[T]):
 
     def dequeue(self):
         if self.is_empty():
-            raise RuntimeError("Queue is already empty")
+            print("List is already empty")
+            return None
         return self.__list.remove_first()
 
-    def search(self, index: int) -> T:
+    def search(self, index: int):
         return self.__list.get_element_at(index)
